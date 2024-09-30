@@ -1,0 +1,44 @@
+<%- include('partials/header') %>
+<section class="profile">
+
+</section>
+<section class="profile_section">
+    <div class="profile_picture">
+    </div>
+    <form action="/chatbox/follow/<%=User%>" method="post">
+    <div class="profile_info">
+        <div class="profile_name_info">
+                <h4><%=User%></h4>
+                <div class="profile_buttons">
+                <% if(current_user == searched){ %>
+                    <input class="btn btn-dark" id="followInput" type="submit" value="Edit" ></input> 
+                <% } else{ %>
+                    <% if(follow){ %>
+                        <input class="btn btn-dark" id="followInput" type="submit" value="followed" disabled></input> 
+                        <a href="/chatbox/inbox/<%= chatID%>"><input class="btn btn-primary" id="MessageInput" type="button" value="Message"></input></a>
+                    <% } else{ %>
+                        <input class="btn btn-primary" id="followInput" type="submit" value="follow"></input> 
+                        <input class="btn btn-primary hidden" id="MessageInput" type="button" value="Message"></input>
+                    <% } %>
+                <% } %>
+                </div>
+         </div>
+         <div class="profile_social">
+            <h6> 0 posts </h6>
+            <h6><%=followerCount %> followers </h6>
+            <h6><%= followingCount%> following </h6>
+         </div>
+         <button class="btn btn-dark">bio</button>
+    </div>
+    </form> 
+</section>
+<br>
+<section class="posts">
+    <div class="posts">
+        <h3>No posts yet</h3>
+    </div>
+</section>
+
+
+
+<%- include('partials/footer') %>

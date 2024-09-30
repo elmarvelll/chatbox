@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://getbootstrap.com/docs/5.3/assets/css/docs.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <link rel="stylesheet" href="/css/styles.css">
+    <title>Chatbox</title>
+  </head>
+  <body>    
+    <section class="section">
+        <div class="card" id="card2">
+            <div class="card-body">
+              <h5 class="card-title">Chatbox</h5>
+              <form method="post" action="/chatbox/register">
+                Sign Up
+                <div class="form_info_div">
+
+                <div class="form_info_div2">
+                  <div class="form_info">
+                       <input type="text" name="first_name" autocomplete="off" placeholder="First name" class="form-control" id="first_name">
+                   </div>
+                   <div class="form_info">
+                       <input type="text" name="last_name" placeholder="Last Name" class="form-control" id="last_name">
+                   </div> 
+                 </div>
+                    <div class="form_info">
+                        <input type="email" name="email" autocomplete="off" placeholder="email" class="form-control" id="email">
+                    </div>
+                    <div class="form_info">
+                        <input type="password" name="password" placeholder="passsword" class="form-control" id="password">
+                    </div>
+                </div>
+                <button type="submit" class="btn btn-primary" id="nextbutton">Submit</button>
+              </form>
+            </div>
+          </div>
+    </section>
+
+    
+  <script src="/js/script.js"></script>
+  </body>
+  </html>
+ 
+

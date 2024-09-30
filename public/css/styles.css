@@ -1,0 +1,522 @@
+.body{
+  overflow: hidden;
+  height: 100vh;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+
+
+
+
+
+/* login and register */
+  #card{
+background-color: red; 
+ }
+ #card2{
+  width: 360px;
+  height: 60vh;
+ }
+ #card2_login{
+  width: 360px;
+  height: 40vh;
+ }
+ .section{
+  background-color: #ADD8E6;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+ }
+ .form_info_div{
+  padding-top: 10vh;
+}
+#login_div{
+  padding-top: 3vh;
+}
+.form_info{
+  font-size: small;
+  padding-top: 3vh;
+}
+#password{
+  margin-bottom:3vh
+}
+.reg_link{
+  font-size: x-small;
+} 
+
+input::placeholder{
+  font-size: small;
+}
+
+
+/* header and footer */
+
+
+
+
+
+
+
+/* home */
+.home_section{
+  position: relative;
+  height: 100%;
+}
+.home{
+  background-color: #f9fafc;
+  display: flex;
+  height: 100%;
+}
+.blur{
+  position:absolute;
+  left: 0;
+  z-index: 5;
+  background-color: rgb(131, 130, 133);
+  width: 100%;
+  backdrop-filter: blur(150px);
+}
+.menu {
+  width: 500px; /* Set a width if you like */
+
+}
+.header_div{
+display: flex;
+width: 100%;
+background-color: #f9fafc;
+padding: 20px 20px 5px 20px;
+}
+.search{
+  width: 20%;
+}
+.logo{
+  margin: auto;
+  font-size: x-large;
+  font-weight: 200;
+  text-align: center;
+}
+.sub_heading{
+  font-size: small;
+}
+
+
+
+ #search{
+  background-color: #D6EBF2;
+  width: 100%;
+  padding: 5px;
+  border: 1px solid #ccc;
+  border-radius: 10px; /* Adjust this value to change the curve radius */
+  outline: none;
+ }
+
+
+.vertical-menu h3 {
+  padding-left: 50px;
+}
+
+
+.name_div{
+  padding: 20px 40px 10px 50px; 
+  text-decoration: none; /* Remove underline from links */
+  margin: 0px;
+  display: flex;
+}
+
+.vertical-menu p {
+  color: black; /* Black text color */
+  display: block; /* Make the links appear below each other */
+  font-weight: 500;
+  margin: 0px;
+
+}
+.chatSign {
+  font-weight: 700;
+  font-size: x-large;
+  padding-left: 50px;
+
+}
+
+.name_div:hover {
+  background-color: #E1EEF2; /* Dark grey background on mouse-over */
+  border-radius: 20px;
+}
+
+.name_div.active {
+  background-color:#C3E0EA;	
+  border-radius: 20px;
+
+}
+
+.smallParagraph{
+  font-size: small;
+  color: grey;
+}
+/* 
+.profile_section{
+margin-left: 150px;
+margin-top: 50px;
+width: 100vh;
+display: flex;
+height: min-content;
+border-bottom: 1px solid;
+padding-bottom: 50px;
+
+}
+
+.profile_info{
+  padding-left: 100px;
+
+}
+.profile_name_info{
+  padding-top: 30px;
+  display: flex;
+  height: min-content;
+}
+.profile_social{
+  padding-top: 10px;
+  display: flex;
+  justify-content: space-evenly ;
+  height: min-content;
+  width: 300px;
+  padding-bottom: 10px;
+}
+.profile_buttons{
+  padding-left: 10px;
+} */
+
+
+
+
+/* inbox */
+
+.inbox_section{
+  background-color: #ADD8E6;
+  height: 100vh;
+  display: flex;
+}
+.user_message{
+  margin-bottom: 50px;
+  padding-top: 20px;
+  padding-left: 20px;
+  }
+.messages{
+  width: 350px; 
+  padding-right: 40px;
+  border-right: 1px solid;
+  border-color: black;
+  height: 100vh;
+}
+.messages p{
+  padding: 20px 60px;
+  margin: 0px;
+}
+.messages p:hover{
+  background-color: #ccc; /* Dark grey background on mouse-over */
+}
+.messages p:active{
+  color: white;
+}
+.chat_container{
+  width: 100%;
+  height: 100%;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+}
+.reciever_title{
+  height: 50px;
+  padding-top: 10px;
+  margin-left: 30px;
+  font-size: x-large;
+  border-bottom: 1px solid;
+  border-color: black;
+  font-weight: 100;
+}
+
+.profile_container{
+  position: absolute;
+  width: 30%;
+  height: 100%;
+  right: 0;
+  background-color: black;
+  z-index: 1;
+}
+.profile{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.close_button{
+  background-color: black;
+  color: white;
+  border: none;
+  font-size: x-large;
+  height: min-content;
+}
+.profile_header{
+  display: flex;
+}
+.contact_info{
+  color: white;
+  font-size: large;
+  padding-left: 30px;
+  padding-top: 5px;
+}
+ .fa{
+  margin-top: 10px;
+  padding-right: 10px;
+  /* height: 40px;
+  width: 40px;
+  margin-right: 10px;  */
+ } 
+ .fa-heart{
+  color: white;
+ }
+ .fa-heart{
+  color: white;
+ }
+.profile_picture{
+  margin-top: 30px;
+  width: 200px;
+  height: 200px;
+  border-radius: 100%;
+  background-color: red;
+  }
+.profile_name{
+  color: white;
+  font-size: large;
+  font-weight: 500;
+  padding-top: 10px;
+}
+.line_break{
+  width: 100%;
+  height: 10px;
+  background-color: red;
+  margin-top: 30px;
+  margin-bottom: 30px;
+}
+.profile_about{
+  color: white;
+  width: 80%;
+}
+.profile_social{
+  display: flex;
+  color: white;
+  width: 80%;
+  justify-content: space-evenly;
+}
+.follow_div{
+  background-color: black;
+  color: white;
+  width: 100%;
+  padding: 20px 0;
+}
+.follow_div:hover{
+  background-color: red;
+}
+.message_div{
+  color: white;
+  width: 100%;
+  padding: 20px 0;
+}
+.message_div:hover{
+  background-color: red;
+}
+.delete_div{
+  color: white;
+  width: 100%;
+  padding: 20px 0;
+}
+.delete_div:hover{
+  background-color: red;
+}
+
+.chat_area{
+flex: 0 0 70%;
+ width: 100%;
+overflow: hidden; 
+overflow-y: auto;
+/* background-image: url('/images/—Pngtree—light blue cute striped baby_1348681.png') */
+}  
+.sender_chats{
+background-color: #6495ED;
+width: fit-content;
+color: white;
+padding: 10px;
+margin: 10px;
+border-radius: 0 15px;
+max-width: 300px;
+overflow-wrap: break-word;
+margin-left: auto;
+margin-right: 30px;
+}
+.reciever_chats{
+background-color: #f3f4f6;
+width: fit-content;
+color: black;
+padding: 10px;
+margin: 10px;
+margin-left: 30px;
+border-radius: 0 15px;
+max-width: 300px;
+overflow-wrap: break-word;
+}
+.chat_sender{
+  width: 100%; 
+  padding-left: 40px;
+  padding-top: 10px;
+  padding-bottom: 20px;
+}
+.send_message{
+  width: 100%;
+  padding: 20px 0 10px;
+  display: none;
+  flex-shrink: 0;
+}
+.message_form{
+  position: relative;
+  width: 90%;
+  margin: 0 auto;
+}
+.chatInput{
+  height: 10px;
+  border-radius: 50px;
+  border: 1px solid;
+  padding: 20px 30px;
+  background-color: transparent;
+  width: 100%;
+}
+.chatInput:focus{
+  outline: none;
+}
+.message_button{
+  position: absolute;
+  color: blueviolet;
+  background-color: transparent;
+  border: none;
+  right: 0;
+  top: 20%;
+  padding-right: 20px;
+}
+.post_container{
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+.posted{
+  background-color: #454451;
+  min-width: 30%;
+  width: 60%;
+  height: 300px;
+  margin-left: 15%;
+  border-radius: 10px;
+  color: white;
+}
+.poster{
+  font-size: x-large;
+  font-weight: 300;
+  margin: 20px 20px 0px 20px;
+  padding-bottom: 10px;
+  border-bottom: 1px solid;
+  border-color: white;
+}
+.post_header{
+  font-size: xx-large;
+  font-weight: 400;
+  margin-left: 20px;
+}
+.post_body{
+  margin-left: 20px;
+  font-size: large;
+  font-weight: 400;
+}
+.likes_and_comments{
+  display: flex;
+  padding: 20px;
+  height: fit-content;
+}
+.likes{
+  margin: 10px;
+  display: flex;
+  height: fit-content;
+  /* justify-content: space-between;  */
+}
+.like_count{
+  padding-left: 10px;
+}
+.comment_count{
+  padding-left: 10px;
+}
+.comments{
+  margin: 10px;
+  display: flex;
+} 
+.comment_div{
+background-color: #454451;
+width: 80%;
+height: 90%;
+border-radius: 10px;
+color: white;
+margin: auto;
+display: flex;
+flex-direction: column;
+align-items: center;
+justify-content: center;
+position: relative;
+}
+.comment_close_button{
+  background-color: #454451;
+  top: 0;
+  left: 0;
+  color: white;
+  border: none;
+  font-size: medium;
+  height: min-content;
+  position: absolute;
+}
+.comment_div_comment{
+  height: 90%;
+  width: 90%;
+}
+.comment_div_comment div{
+display: flex;
+margin-bottom: 10px;
+}
+.comment_form{
+  width: 80%;
+  display: flex;
+  justify-content: center;
+  position: relative;
+}
+.comment_input{
+  width: 100%;
+  margin: auto;
+  border-radius: 10px;
+  height: 30px;
+  outline: none;
+  border: none;
+  padding: 0px 20px;
+}
+.fa-paper-plane{
+  position: absolute;
+  color: #454451;
+  right: 1%;
+  top: 20%;
+  margin-left: 10px;
+}
+.comment_header{
+font-weight: 300;
+padding-right:10px;
+}
+.comment_body{
+font-weight: 50;
+}
+.hidden{
+  display:none;
+}
+.show{
+  display: block;
+}
