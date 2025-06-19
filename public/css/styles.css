@@ -4,6 +4,7 @@
   height: 100vh;
   width: 100%;
   background-color: black;
+  overflow: hidden;
 
 }
 .nav_bar{
@@ -11,8 +12,55 @@
   width: 5%;
   min-width: 45px;
   display: flex;
-  justify-content: center;
+  flex-direction: column;
+  align-items: center;
 }
+
+.notification_div{
+  position: relative;
+}
+.notification_activity{
+  position: absolute;
+  height: 12px;
+  width: 12px;
+  border-radius: 100%;
+  bottom: 0;
+  right: 0;
+  background-color: red;
+}
+.notification{
+  background-color:#454451;
+  color: white;
+  width: 90%;
+  padding: 20px 0;
+  border: none;
+  border-radius:10px ;
+  margin: 10px auto 0px;
+}
+.noti_follow{
+  width: 100%;
+  display: flex;
+  justify-content: end;
+}
+.noti_follow button{
+  background-color: black;
+  color: white;
+  width: 70px;
+  min-width: 70px;
+  padding: 5px;
+  border: none;
+  border-radius:10px ;
+  margin-right: 10px;
+}
+.notification div{
+  color: white;
+  font-size: medium;
+  padding-bottom: 10px;
+  text-align: center;
+}
+/* .notification:hover{
+  background-color: #5C5B69;
+} */
 .post_story_background{
   background: rgb(0,0,0,0.1);
   position: absolute;
@@ -33,6 +81,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
+  position: relative;
 }
 .post_box{
   width:80%;
@@ -45,6 +94,7 @@
   color: white;
   padding-bottom: 5px;
   margin: 0px;
+  
 }
 .post_story_header{
   background-color: transparent;
@@ -93,18 +143,94 @@
 
 
 
+.addGroup{
+  height: 600px;
+  width: 400px;
+  background-color: #454451;
+  border-radius: 10px;
+  position: relative;
+}
+.group_name{
+  display: block;
+  width: 80%;
+  background-color: transparent;
+  border: none;
+  border-bottom: 1px solid;
+  border-color: white;
+  outline: none;
+  margin: 30px auto;
+  padding: 10px 0 ;
+  color: white;
+}
+.group_name::placeholder{
+  font-size: x-large;
+  font-weight: 100;
+  color: grey;
+}
+.group_search_input{
+  display: block;
+  width: 80%;
+  background-color: transparent;
+  border: none;
+  border-bottom: 1px solid;
+  border-color: white;
+  outline: none;
+  margin: 60px auto;
+  padding: 10px 0;
+  color:white
+}
+.group_search_input::placeholder{
+  font-size: x-large;
+  font-weight: 50;
+  color: grey;
+}
+.groupfriends{
+  width: 80%;
+  min-height: 200px;
+  height: 300px;
+  margin: 0 auto;
+}
+
+.check{
+  display: flex;
+  width: 100%;
+  justify-content: space-between;
+  border-bottom: 1px solid;
+  border-color: white;
+}
+
+.groupfriends p {
+  color: white;
+  font-size: x-large;
+  font-weight:50;
+  padding-top: 10px;
+  margin-bottom: 20px;
+}
+
+.group_submit{
+  width: 100px;
+  display: block;
+  margin: 0 auto;
+  background-color: black;
+  border-radius: 5px;
+  color: white;
+}
+
 /* login and register */
   #card{
 background-color: red; 
  }
+ 
  #card2{
   width: 360px;
   height: 60vh;
  }
+
  #card2_login{
   width: 360px;
   height: 40vh;
  }
+
  .section{
   background-color: #ADD8E6;
   height: 100vh;
@@ -112,19 +238,24 @@ background-color: red;
   align-items: center;
   justify-content: center;
  }
+
  .form_info_div{
   padding-top: 10vh;
 }
+
 #login_div{
   padding-top: 3vh;
 }
+
 .form_info{
   font-size: small;
   padding-top: 3vh;
 }
+
 #password{
   margin-bottom:3vh
 }
+
 .reg_link{
   font-size: x-small;
 } 
@@ -152,6 +283,7 @@ input::placeholder{
   display: flex;
   height: 100%;
 }
+
 .blur{
   position:absolute;
   left: 0;
@@ -160,25 +292,36 @@ input::placeholder{
   width: 100%;
   backdrop-filter: blur(150px);
 }
+
 .menu {
   width: 500px; /*Set a width if you like */
-
 }
+
 .header_div{
 display: flex;
 width: 100%;
 background-color: #f9fafc;
 padding: 20px 20px 5px 20px;
 }
+.get_posts{
+  background-color: #454451;
+  border-radius: 20px;
+  padding: 5px 10px;
+  height: fit-content;
+  color:white
+}
+
 .search{
   width: 20%;
 }
+
 .logo{
   margin: auto;
   font-size: x-large;
   font-weight: 200;
   text-align: center;
 }
+
 .sub_heading{
   font-size: small;
 }
@@ -195,11 +338,20 @@ padding: 20px 20px 5px 20px;
  }
 
 
+
+.vertical-menu{
+  margin-bottom : 50px;
+}
 .vertical-menu h3 {
-  padding-left: 50px;
+  padding-left: 30px;
 }
 
-
+.vertical-menu p {
+  color: black; /* Black text color */
+  display: block; /* Make the links appear below each other */
+  font-weight: 500;
+  margin-bottom: 0px;
+}
 .name_div{
   padding: 20px 40px 10px 50px; 
   text-decoration: none; /* Remove underline from links */
@@ -207,13 +359,46 @@ padding: 20px 20px 5px 20px;
   display: flex;
 }
 
-.vertical-menu p {
+.name_div:hover {
+  background-color: #E1EEF2; 
+  border-radius: 20px;
+}
+
+.name_div.active {
+  background-color:#C3E0EA;	
+  border-radius: 20px;
+
+}
+.group_vertical-menu{
+  margin-bottom : 50px;
+}
+.group_vertical-menu h3{
+  padding-left: 30px;
+}
+.group_vertical-menu p{
   color: black; /* Black text color */
   display: block; /* Make the links appear below each other */
   font-weight: 500;
+  margin-bottom: 0px;
+}
+.group_name_div{
+  padding: 20px 40px 10px 50px; 
+  text-decoration: none; /* Remove underline from links */
   margin: 0px;
+  display: flex;
+}
+
+.group_name_div:hover {
+  background-color: #E1EEF2; 
+  border-radius: 20px;
+}
+
+.group_name_div.active {
+  background-color:#C3E0EA;	
+  border-radius: 20px;
 
 }
+
 .chatSign {
   font-weight: 700;
   font-size: x-large;
@@ -222,7 +407,7 @@ padding: 20px 20px 5px 20px;
 }
 
 .name_div:hover {
-  background-color: #E1EEF2; /* Dark grey background on mouse-over */
+  background-color: #E1EEF2; 
   border-radius: 20px;
 }
 
@@ -298,6 +483,7 @@ padding-bottom: 50px;
 .messages p:hover{
   background-color: #ccc; /* Dark grey background on mouse-over */
 }
+
 .messages p:active{
   color: white;
 }
@@ -308,121 +494,58 @@ padding-bottom: 50px;
   display: flex;
   flex-direction: column;
 }
+.reciever_div{
+  display: flex;
+  justify-content: space-between;
+  border-bottom: 1px solid;
+  border-color: black;
+}
 .reciever_title{
   height: 50px;
   padding-top: 10px;
   margin-left: 30px;
   font-size: x-large;
-  border-bottom: 1px solid;
-  border-color: black;
   font-weight: 100;
 }
-
-.profile_container{
-  position: absolute;
-  width: 30%;
-  height: 100%;
-  right: 0;
-  background-color: grey;
-  z-index: 1;
-}
-.profile{
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
-.close_button{
-  background-color: black;
-  color: white;
-  border: none;
-  font-size: x-large;
-  height: min-content;
-}
-.profile_header{
-  display: flex;
-}
-.contact_info{
-  color: white;
-  font-size: large;
-  padding-left: 30px;
-  padding-top: 5px;
-}
- .fa{
-  margin-top: 10px;
-  padding-right: 10px;
-  /* height: 40px;
+.add_member{
   width: 40px;
-  margin-right: 10px;  */
- } 
- .fa-heart{
-  color: white;
- }
- .fa-heart{
-  color: white;
- }
-.profile_picture{
-  margin-top: 30px;
-  width: 200px;
-  height: 200px;
+  height: 40px;
+  background-color: lightgray;
   border-radius: 100%;
-  background-color: red;
-  }
-.profile_name{
-  color: white;
-  font-size: large;
-  font-weight: 500;
-  padding-top: 10px;
-}
-.line_break{
-  width: 100%;
-  height: 10px;
-  background-color: #D6EBF2;
-  margin-top: 30px;
-  margin-bottom: 30px;
-}
-.profile_about{
-  color: white;
-  width: 80%;
-}
-.profile_social{
+  font-size: xx-large ;
   display: flex;
-  color: white;
-  width: 80%;
-  justify-content: space-evenly;
+  justify-content: center;
+  align-items: center;
+  align-self: center;
+  margin-right: 10px;
+  cursor: default;
 }
-.follow_div{
-  background-color: black;
-  color: white;
-  width: 100%;
-  padding: 20px 0;
-}
-.follow_div:hover{
-  background-color: red;
-}
-.message_div{
-  color: white;
-  width: 100%;
-  padding: 20px 0;
-}
-.message_div:hover{
-  background-color: red;
-}
-.delete_div{
-  color: white;
-  width: 100%;
-  padding: 20px 0;
-}
-.delete_div:hover{
-  background-color: red;
-}
-
 .chat_area{
-flex: 0 0 70%;
- width: 100%;
-overflow: hidden; 
-overflow-y: auto;
-/* background-image: url('/images/—Pngtree—light blue cute striped baby_1348681.png') */
-}  
+  height: 5%;
+  flex: 1 1 0;
+  overflow: hidden; 
+  overflow-y: auto;
+}
+ .send_message{
+  width: 100%;
+  padding: 20px 0 10px;
+  margin-top:auto;
+  margin-bottom: 10px;
+  /* position: absolute;
+  bottom: 100px; */
+ }
+ .group_send_message{
+  width: 100%;
+  padding: 20px 0 10px;
+  margin-top:auto;
+  margin-bottom: 10px;
+ }
+.time{
+  width: fit-content;
+  margin: auto;
+  font-size: small;
+  color: grey;
+}
 .sender_chats{
 background-color: #6495ED;
 width: fit-content;
@@ -435,16 +558,21 @@ overflow-wrap: break-word;
 margin-left: auto;
 margin-right: 30px;
 }
+
 .reciever_chats{
 background-color: #f3f4f6;
 width: fit-content;
 color: black;
 padding: 10px;
-margin: 10px;
+margin-bottom: 10px;
 margin-left: 30px;
 border-radius: 0 15px;
 max-width: 300px;
 overflow-wrap: break-word;
+}
+.group_chat_friend{
+font-size:small;
+margin-left: 40px;
 }
 .chat_sender{
   width: 100%; 
@@ -452,12 +580,12 @@ overflow-wrap: break-word;
   padding-top: 10px;
   padding-bottom: 20px;
 }
-.send_message{
-  width: 100%;
-  padding: 20px 0 10px;
-  flex-shrink: 0;
-}
 .message_form{
+  position: relative;
+  width: 90%;
+  margin: 0 auto;
+}
+.group_message_form{
   position: relative;
   width: 90%;
   margin: 0 auto;
@@ -482,6 +610,117 @@ overflow-wrap: break-word;
   top: 20%;
   padding-right: 20px;
 }
+.profile_container{
+  position: absolute;
+  width: 30%;
+  height: 100%;
+  right: 0;
+  background-color: #454451;
+  border-bottom-left-radius: 10px;
+  border-top-left-radius: 10px;
+  transition:  0.5s ease-out ;
+  transform: translateX(350px);
+  z-index: 1;
+}
+.profile_container.active{
+  transform: translateX(0px);
+}
+.profile{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.close_button{
+  background-color: #454451;
+  color: white;
+  border: none;
+  font-size: x-large;
+  height: min-content;
+}
+.profile_header{
+  display: flex;
+}
+.profile_header button{
+  border-radius: 10px;
+}
+.contact_info{
+  color: white;
+  font-size: large;
+  padding-left: 30px;
+  padding-top: 5px;
+}
+ .fa{
+  margin-top: 10px;
+  padding-right: 10px;
+ } 
+ .fa-heart{
+  color: white;
+ }
+ .fa-heart{
+  color: white;
+ }
+.profile_picture{
+  margin-top: 30px;
+  width: 200px;
+  height: 200px;
+  border-radius: 100%;
+  background-color: red;
+  }
+.profile_name{
+  color: white;
+  font-size: large;
+  font-weight: 500;
+  padding: 10px 0 20px;
+}
+.line_break{
+  width: 100%;
+  height: 10px;
+  background-color: #D6EBF2;
+  margin-top: 30px;
+  margin-bottom: 30px;
+}
+.profile_about{
+  color: white;
+  width: 80%;
+}
+.profile_social{
+  display: flex;
+  color: white;
+  width: 80%;
+  justify-content: space-evenly;
+}
+.follow_div{
+  background-color:#454451;
+  color: white;
+  width: 90%;
+  padding: 20px 0;
+  border: none;
+  border-radius:10px ;
+}
+.follow_div:hover{
+  background-color: #5C5B69;
+}
+.message_div{
+  background-color:#454451;
+  color: white;
+  width: 90%;
+  padding: 20px 0;
+  border: none;
+  border-radius:10px ;
+  text-align: center;
+}
+.message_div:hover{
+  background-color: #5C5B69;
+}
+.delete_div{
+  color: white;
+  width: 100%;
+  padding: 20px 0;
+}
+.delete_div:hover{
+  background-color: red;
+}
+
 .Whole_post_container{
   height: 80%;
   overflow: hidden; 
@@ -533,6 +772,15 @@ overflow-wrap: break-word;
 .like_count{
   padding-left: 10px;
 }
+.comment_html{
+  height:100%;
+  width: 100%;
+  background-color: black;
+  position: absolute;
+  display: flex;
+  justify-content: center;
+  z-index: 1;
+}
 .comment_count{
   padding-left: 10px;
 }
@@ -557,6 +805,7 @@ position: relative;
   background-color: #454451;
   top: 0;
   left: 0;
+  border-radius: 10px;
   color: white;
   border: none;
   font-size: medium;
