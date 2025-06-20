@@ -9,7 +9,6 @@ import session from "express-session";
 import { Server } from "socket.io";
 import { createServer } from "http";
 import sharedsession from "express-socket.io-session"
-import { SocketAddress } from "net";
 
 const app = express();
 const saltRounds = 10;
