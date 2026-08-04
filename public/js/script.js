@@ -1,9 +1,24 @@
+// Read once at load: set server-side as a data attribute on <body> (see
+// header.ejs), rather than an inline <script> tag, since editors often
+// mis-parse EJS tags mixed into raw <script> blocks as invalid JS.
+const CURRENT_USER_ID = document.body.dataset.userId || null
 
 const input = document.querySelector('#search');
 const searchdiv = document.querySelector('#searchDivs');
 const vertical_menu = document.querySelector('#vertical-menu');
+const send_message = document.getElementById('send_message')
 const form = document.getElementById("message_form")
-let originalHTML = vertical_menu.innerHTML
+const chatPage = Boolean(vertical_menu)
+const searchPage = Boolean(input && searchdiv && vertical_menu)
+const messagePage = Boolean(form)
+let originalHTML = vertical_menu ? vertical_menu.innerHTML : ''
+
+console.log('[client] script loaded', {
+    path: window.location.pathname,
+    chatPage,
+    searchPage,
+    messagePage,
+})
 
 
 // profile.ejs
@@ -11,14 +26,25 @@ let originalHTML = vertical_menu.innerHTML
 
 const socket = io()
 
-socket.on('connect', (socket) => {
-    console.log('connected to server')
-
+socket.on('connect', () => {
+    console.log('[client] socket connected', socket.id)
+    // inbox.ejs is server-rendered with the conversation already in the
+    // DOM, so there's no click event to hang the join off of — join as
+    // soon as the socket (re)connects.
+    const existingReciever = document.querySelector('.reciever_title')
+    if (existingReciever && existingReciever.innerHTML.trim() !== '') {
+        socket.emit('joinConversation', existingReciever.innerHTML)
+    }
 })
 
 
-socket.emit('getVerif')
-socket.emit('get_posts')
+if (chatPage) {
+    console.log('[client] requesting chat bootstrap data')
+    socket.emit('getVerif')
+    socket.emit('get_posts')
+} else {
+    console.log('[client] skipping chat bootstrap on this page')
+}
 
 function debounce(cb, wait) {
     let timeout;
@@ -35,8 +61,9 @@ const sendData = async (event) => {
         const search = {
             [name]: value
         }
+        console.log('[client] search input changed', value)
         socket.emit('searches', JSON.stringify(search))
-        socket.on('getSearch', (data) => {
+        socket.once('getSearch', (data) => {
             dataArray = JSON.parse(data)
             if (input.value.trim() !== "") {
                 vertical_menu.innerHTML = ""
@@ -58,7 +85,7 @@ const sendData = async (event) => {
                     name_div.forEach((div) => {
                         div.addEventListener('click', () => {
                             socket.emit('friend_verification', div.innerHTML)
-                            socket.on('isFriend', (data) => {
+                            socket.once('isFriend', (data) => {
                                 const send_message = document.getElementById('send_message')
                                 const chat_container = document.getElementById('chat_container')
                                 const friend = JSON.parse(data)
@@ -77,7 +104,7 @@ const sendData = async (event) => {
                                                 show_profile(chat_container, reciever_title.innerHTML, friend.length)
                                             })
                                             socket.emit('getFriend', fullName)
-                                            socket.on('getMessages', (data, user_id) => {
+                                            socket.once('getMessages', (data, user_id) => {
                                                 const messages = JSON.parse(data)
                                                 chat_area.innerHTML = ""
                                                 messages.forEach((chat) => {
@@ -100,10 +127,11 @@ const sendData = async (event) => {
                                     chat_container.appendChild(chat_area)
                                     send_message.classList.add("show")
                                     chat_container.appendChild(send_message)
+                                    socket.emit('joinConversation', div.innerHTML)
                                 }
                                 else {
                                     show_profile(chat_container, div.innerHTML, friend.length)
-                                    socket.on('message_request_processed', () => {
+                                    socket.once('message_request_processed', () => {
                                         chat_container.innerHTML = ""
                                         const chat_area = document.createElement('div')
                                         chat_area.id = "chat_area"
@@ -112,7 +140,7 @@ const sendData = async (event) => {
                                         reciever_title.className = "reciever_title"
                                         reciever_title.innerHTML = div.innerHTML
                                         socket.emit('getFriend', div.innerHTML)
-                                        socket.on('getMessages', (data, user_id) => {
+                                        socket.once('getMessages', (data, user_id) => {
                                             const messages = JSON.parse(data)
                                             chat_area.innerHTML = ""
                                             messages.forEach((chat) => {
@@ -132,6 +160,7 @@ const sendData = async (event) => {
                                         chat_container.appendChild(chat_area)
                                         send_message.classList.add("show")
                                         chat_container.appendChild(send_message)
+                                        socket.emit('joinConversation', div.innerHTML)
                                     })
 
                                 }
@@ -151,7 +180,9 @@ const sendData = async (event) => {
         console.log(error)
     }
 }
-input.addEventListener('input', debounce(sendData, 500))
+if (input) {
+    input.addEventListener('input', debounce(sendData, 500))
+}
 
 
 
@@ -161,12 +192,16 @@ const message_form = document.getElementById('message_form')
 
 
 const add_chat = (event) => {
+    if (!messagePage) {
+        return
+    }
     const name_div = document.querySelectorAll('#name_div');
     const vertical_menu = document.querySelector('#vertical-menu');
     const reciever = document.querySelector('.reciever_title')
     const chat_area = document.getElementById('chat_area')
     event.preventDefault()
     const chat = document.getElementById('chat')
+    console.log('[client] sending message', { receiver: reciever?.innerHTML, message: chat?.value })
     socket.emit('newChat', chat.value, reciever.innerHTML)
     name_div.forEach((div) => {
         if (div.children[1].firstChild.innerHTML == reciever.innerHTML) {
@@ -177,26 +212,54 @@ const add_chat = (event) => {
     })
     chat.value = ""
 }
-message_form.addEventListener('submit', add_chat)
+if (message_form) {
+    message_form.addEventListener('submit', add_chat)
+}
 
 
 
 
-socket.on('addChat', (data) => {
+// addChat removed: the server now sends a single 'newMessage' event to
+// everyone in the conversation room, sender included, so this separate
+// "echo the sender's own message back" event is no longer emitted.
+
+// NEW: fires only for sockets that have joined this specific
+// conversation's room, so no "am I viewing this chat" check is needed —
+// if I'm receiving this event at all, it belongs on screen right now.
+socket.on('newMessage', (data, senderId, senderName) => {
+    console.log('[client] newMessage received from', senderName)
+    const message = JSON.parse(data)
     const chat_area = document.getElementById('chat_area')
-    const chat = document.getElementById('chat')
-    const new_chat = JSON.parse(data)
+    if (!chat_area) return
+
+    const isOwnMessage = String(senderId) === String(CURRENT_USER_ID)
+
     const div = document.createElement('div')
-    div.innerHTML = new_chat.message
-    div.classList.add('sender_chats')
+    div.innerHTML = message.message
+    div.classList.add(isOwnMessage ? 'sender_chats' : 'reciever_chats')
     chat_area.appendChild(div)
     chat_area.scrollTop = chat_area.scrollHeight
-    chat.value = ""
 
+    if (isOwnMessage) {
+        const chat = document.getElementById('chat')
+        if (chat) chat.value = ""
+    }
+})
+
+// NEW: fires on every open tab of mine when I get a message on a
+// conversation I'm not currently looking at — just refresh the sidebar
+// preview quietly, no need to touch the chat window.
+socket.on('chatListUpdate', () => {
+    console.log('[client] chatListUpdate received')
+    socket.emit('getVerif')
 })
 
 socket.on("messageVerif", (message) => {
-    console.log('message recieved')
+    console.log('[client] messageVerif received')
+    if (!vertical_menu) {
+        console.log('[client] no vertical menu on this page; skipping list render')
+        return
+    }
     const ismessaged = JSON.parse(message)
     vertical_menu.innerHTML = ""
     ismessaged.sort((a, b) => b.lastElementID - a.lastElementID)
@@ -234,7 +297,7 @@ socket.on("messageVerif", (message) => {
             div.addEventListener('click', () => {
                 document.querySelector('.active')?.classList.remove('active');
                 div.classList.add("active")
-                const send_message = document.getElementById('send_message')
+                console.log(send_message)
                 const chat_container = document.getElementById('chat_container')
                 const reciever_title = document.createElement('div')
                 reciever_title.className = "reciever_title"
@@ -254,7 +317,7 @@ socket.on("messageVerif", (message) => {
 
 
                     socket.emit('getFriend', fullName)
-                    socket.on('getMessages', (data, user_id) => {
+                    socket.once('getMessages', (data, user_id) => {
                         const messages = JSON.parse(data)
                         chat_area.innerHTML = ""
                         messages.forEach((chat) => {
@@ -274,6 +337,7 @@ socket.on("messageVerif", (message) => {
                     chat_container.appendChild(chat_area)
                     send_message.classList.add("show")
                     chat_container.appendChild(send_message)
+                    socket.emit('joinConversation', fullName)
                 }
             })
         })
@@ -284,6 +348,11 @@ socket.on("messageVerif", (message) => {
 
 
 socket.on('posts', (data) => {
+    console.log('[client] posts received')
+    if (!vertical_menu) {
+        console.log('[client] no vertical menu on this page; skipping posts render')
+        return
+    }
     const posts = JSON.parse(data)
     const chat_container = document.querySelector(".chat_container")
     chat_container.innerHTML = ''
@@ -311,10 +380,10 @@ socket.on('posts', (data) => {
         comment_count.className = 'comment_count'
         const heart_img = document.createElement('span')
         socket.emit('getliked', JSON.stringify(post))
-        socket.on('getliked_processed', (data) => {
+        socket.once('getliked_processed', (data) => {
             const userLike = JSON.parse(data)
             socket.emit('get_like_count', JSON.stringify(post))
-            socket.on('like_count', (data) => {
+            socket.once('like_count', (data) => {
                 like_count.innerHTML = JSON.parse(data).length
             })
             if (userLike.length == 0) {
@@ -325,6 +394,7 @@ socket.on('posts', (data) => {
             }
         })
         heart_img.addEventListener('click', () => {
+            console.log('[client] like toggle clicked', post.story_id || post.id)
             socket.emit('isliked', JSON.stringify(post))
             socket.once('isliked_processed', (data) => {
                 const is_like = JSON.parse(data)
@@ -333,7 +403,7 @@ socket.on('posts', (data) => {
                     socket.emit('add_like_request', JSON.stringify(post))
                     console.log('liked added')
                     socket.emit('get_like_count', JSON.stringify(post))
-                    socket.on('like_count', (data) => {
+                    socket.once('like_count', (data) => {
                         like_count.innerHTML = JSON.parse(data).length
                     })
                 }
@@ -341,7 +411,7 @@ socket.on('posts', (data) => {
                     heart_img.className = 'far fa-heart fa-lg'
                     socket.emit('delete_like_request', JSON.stringify(post))
                     socket.emit('get_like_count', JSON.stringify(post))
-                    socket.on('like_count', (data) => {
+                    socket.once('like_count', (data) => {
                         like_count.innerHTML = JSON.parse(data).length
                     })
                     console.log('like removed')
@@ -360,6 +430,7 @@ socket.on('posts', (data) => {
             comment_count.innerHTML = JSON.parse(data).length
         })
         comment_img.addEventListener('click', () => {
+            console.log('[client] comment panel opened', post.story_id || post.id)
             socket.emit('getcomment', JSON.stringify(post))
             const body = document.querySelector('.body')
             const old_body_innerHTML = body.innerHTML
@@ -378,9 +449,9 @@ socket.on('posts', (data) => {
             })
 
 
-            socket.on('getcomment_processed', (data) => {
+            socket.once('getcomment_processed', (data) => {
                 const comments = JSON.parse(data)
-                console.log(comments)
+                console.log('[client] comments loaded', comments.length)
                 comments.forEach((commented) => {
                     const comment = document.createElement('div')
                     const comment_header = document.createElement('div')
@@ -403,11 +474,13 @@ socket.on('posts', (data) => {
             comment_form.addEventListener('submit',(event)=>{
                 event.preventDefault()
                 const input = document.querySelector('.comment_input')
+                console.log('[client] submit comment', { post: post.story_id || post.id, value: input.value })
                 socket.emit('add_comment',input.value,JSON.stringify(post))
                 input.value = ""
             })
             comment_send.addEventListener('click',()=>{
                 const input = document.querySelector('.comment_input')
+                console.log('[client] icon comment submit', { post: post.story_id || post.id, value: input.value })
                 socket.emit('add_comment',input.value,JSON.stringify(post))
                 input.value = ""
             })
@@ -437,7 +510,7 @@ socket.on('posts', (data) => {
     })
 })
 socket.on('add_comment_processed',(message, user)=>{
-    console.log('hi')
+    console.log('[client] add_comment_processed received')
     const comment_div = document.querySelector('.comment_div_comment')
     const new_comment = document.createElement('div')
     const new_comment_header = document.createElement('div')
@@ -449,7 +522,7 @@ socket.on('add_comment_processed',(message, user)=>{
     new_comment.appendChild(new_comment_header)
     new_comment.appendChild(new_comment_body)
     comment_div.appendChild(new_comment)
-    console.log(new_comment)
+    console.log('[client] new comment appended')
 })
 function show_profile(chat_container, name, friend) {
     const body = document.querySelector('.body')

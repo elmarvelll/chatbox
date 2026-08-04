@@ -1,12 +1,17 @@
 <%- include('partials/header') %>
-    <div class="chat_container" id="chat_container">
-    <div class="send_message" id="send_message">
-        <form id="message_form" class="message_form">
-            <input type="text" autofocus="off" autocomplete="off" name="message" id="chat" class="chatInput">
-            <button type="submit" class="message_button" id="message_button">Send</button>
-        </form>
-    </div>
+            <div class="chat_container" id="chat_container">
+                <div class="empty_state">
+                    <span class="fa fa-comments fa-3x"></span>
+                    <h4>Select a conversation</h4>
+                    <p>Pick someone from the list to start chatting.</p>
+                </div>
+                <div class="send_message" id="send_message">
+                    <form id="message_form" class="message_form">
+                        <input type="text" autofocus="off" autocomplete="off" name="message" id="chat" class="chatInput" placeholder="Type a message">
+                        <button type="submit" class="message_button" id="message_button">Send</button>
+                    </form>
+                </div>
+            </div>
+    </section>
 
-    </div>
-
-    <%- include('partials/footer') %>
+<%- include('partials/footer') %>
