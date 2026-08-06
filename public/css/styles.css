@@ -296,6 +296,13 @@ input::placeholder{
 .vertical-menu{
   padding: 8px 0 24px;
 }
+.initmessage{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  color: grey;
+}
 
 .vertical-menu h3,
 .chatSign{

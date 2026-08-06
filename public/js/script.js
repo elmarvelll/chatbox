@@ -262,6 +262,14 @@ socket.on("messageVerif", (message) => {
     }
     const ismessaged = JSON.parse(message)
     vertical_menu.innerHTML = ""
+    const init_message = document.createElement('span')
+init_message.innerHTML = `
+<span>Search for your friends here.<br></span>
+<span>Without friends? I got you! 😄<br></span>
+<span>Search for <strong>Marvelous</strong> and send me a text.</span>
+`;
+    init_message.className ='initmessage'
+    vertical_menu.appendChild(init_message)
     ismessaged.sort((a, b) => b.lastElementID - a.lastElementID)
     ismessaged.forEach((chat) => {
         const name_div = document.createElement('div')

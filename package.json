@@ -5,7 +5,9 @@
   "type": "module",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "dev": "nodemon index.js"
+    "dev": "nodemon index.js",
+    "build": "echo Build complete"
+
   },
   "author": "",
   "license": "ISC",
@@ -17,10 +19,11 @@
     "ejs": "^3.1.10",
     "express": "^4.19.2",
     "express-session": "^1.18.0",
+    "mysql2": "^3.14.5",
     "nodemon": "^3.1.4",
     "passport": "^0.7.0",
     "passport-local": "^1.0.0",
-    "mysql2": "^3.14.5",
+    "pg": "^8.22.0",
     "socket.io": "^4.7.5",
     "ws": "^8.18.0"
   }
