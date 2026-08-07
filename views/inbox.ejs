@@ -1,8 +1,9 @@
-<%- include('partials/header') %>
-        </div>
-      </div>  
+<%- include('partials/header') %> 
       <div class="chat_container" id="chat_container">
-        <div class="reciever_title"><%= reciever %></div>
+        <div class="reciever_title" data-receiver-name="<%= reciever %>">
+          <button type="button" class="mobile_chat_back" aria-label="Back to conversations">&#8592;</button>
+          <span class="receiver_name"><%= reciever %></span>
+        </div>
         <div class="chat_area" id="chat_area">
           <% if (messages && messages.length) { %>
             <% messages.forEach((message) => { %>

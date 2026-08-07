@@ -1,24 +1,25 @@
-// Read once at load: set server-side as a data attribute on <body> (see
-// header.ejs), rather than an inline <script> tag, since editors often
-// mis-parse EJS tags mixed into raw <script> blocks as invalid JS.
 const CURRENT_USER_ID = document.body.dataset.userId || null
-
-const input = document.querySelector('#search');
 const searchdiv = document.querySelector('#searchDivs');
 const vertical_menu = document.querySelector('#vertical-menu');
 const send_message = document.getElementById('send_message')
 const form = document.getElementById("message_form")
 const chatPage = Boolean(vertical_menu)
-const searchPage = Boolean(input && searchdiv && vertical_menu)
 const messagePage = Boolean(form)
+const burger = document.getElementById("menu-toggle");
+const menu = document.getElementById("menu");
 let originalHTML = vertical_menu ? vertical_menu.innerHTML : ''
+const mediaQuery = window.matchMedia("(max-width: 768px)");
+burger.addEventListener("click", () => {
+    menu.classList.toggle("open");
+});
 
 console.log('[client] script loaded', {
     path: window.location.pathname,
     chatPage,
-    searchPage,
     messagePage,
 })
+
+
 
 
 // profile.ejs
@@ -56,12 +57,14 @@ function debounce(cb, wait) {
 const sendData = async (event) => {
     try {
         const name = input.name
+        console.log(input)
         let value = event.target.value;
         let dataArray = []
         const search = {
             [name]: value
         }
         console.log('[client] search input changed', value)
+        console.log(search)
         socket.emit('searches', JSON.stringify(search))
         socket.once('getSearch', (data) => {
             dataArray = JSON.parse(data)
@@ -86,7 +89,6 @@ const sendData = async (event) => {
                         div.addEventListener('click', () => {
                             socket.emit('friend_verification', div.innerHTML)
                             socket.once('isFriend', (data) => {
-                                const send_message = document.getElementById('send_message')
                                 const chat_container = document.getElementById('chat_container')
                                 const friend = JSON.parse(data)
                                 if (friend.length !== 0) {
@@ -129,7 +131,7 @@ const sendData = async (event) => {
                                     chat_container.appendChild(send_message)
                                     socket.emit('joinConversation', div.innerHTML)
                                 }
-                                else {
+                                else {  
                                     show_profile(chat_container, div.innerHTML, friend.length)
                                     socket.once('message_request_processed', () => {
                                         chat_container.innerHTML = ""
@@ -157,6 +159,7 @@ const sendData = async (event) => {
                                             chat_area.scrollTop = chat_area.scrollHeight
                                         })
                                         chat_container.appendChild(reciever_title)
+                                        chat_area.scrollTop = chat_area.scrollHeight
                                         chat_container.appendChild(chat_area)
                                         send_message.classList.add("show")
                                         chat_container.appendChild(send_message)
@@ -180,9 +183,28 @@ const sendData = async (event) => {
         console.log(error)
     }
 }
+
+checkWidth(mediaQuery);
+function checkWidth(event) {
+    if (event.matches) {
+        console.log('a change occured')
+        input = document.querySelector('#mobile_searchInput');
+        console.log(input)
+        input.addEventListener('input', debounce(sendData, 500))
+
+    } else {
+        input = document.querySelector('#searchInput');
+        console.log(input)
+        input.addEventListener('input', debounce(sendData, 500))
+
+    }
+}
+mediaQuery.addEventListener("change", checkWidth);
 if (input) {
     input.addEventListener('input', debounce(sendData, 500))
 }
+
+
 
 
 
@@ -263,12 +285,12 @@ socket.on("messageVerif", (message) => {
     const ismessaged = JSON.parse(message)
     vertical_menu.innerHTML = ""
     const init_message = document.createElement('span')
-init_message.innerHTML = `
+    init_message.innerHTML = `
 <span>Search for your friends here.<br></span>
 <span>Without friends? I got you! 😄<br></span>
 <span>Search for <strong>Marvelous</strong> and send me a text.</span>
 `;
-    init_message.className ='initmessage'
+    init_message.className = 'initmessage'
     vertical_menu.appendChild(init_message)
     ismessaged.sort((a, b) => b.lastElementID - a.lastElementID)
     ismessaged.forEach((chat) => {
@@ -479,17 +501,17 @@ socket.on('posts', (data) => {
             comment_input.className = 'comment_input'
             const comment_send = document.createElement('span')
             comment_send.className = 'fas fa-paper-plane'
-            comment_form.addEventListener('submit',(event)=>{
+            comment_form.addEventListener('submit', (event) => {
                 event.preventDefault()
                 const input = document.querySelector('.comment_input')
                 console.log('[client] submit comment', { post: post.story_id || post.id, value: input.value })
-                socket.emit('add_comment',input.value,JSON.stringify(post))
+                socket.emit('add_comment', input.value, JSON.stringify(post))
                 input.value = ""
             })
-            comment_send.addEventListener('click',()=>{
+            comment_send.addEventListener('click', () => {
                 const input = document.querySelector('.comment_input')
                 console.log('[client] icon comment submit', { post: post.story_id || post.id, value: input.value })
-                socket.emit('add_comment',input.value,JSON.stringify(post))
+                socket.emit('add_comment', input.value, JSON.stringify(post))
                 input.value = ""
             })
             comment_form.appendChild(comment_input)
@@ -517,7 +539,7 @@ socket.on('posts', (data) => {
         chat_container.appendChild(post_container)
     })
 })
-socket.on('add_comment_processed',(message, user)=>{
+socket.on('add_comment_processed', (message, user) => {
     console.log('[client] add_comment_processed received')
     const comment_div = document.querySelector('.comment_div_comment')
     const new_comment = document.createElement('div')
@@ -621,11 +643,7 @@ function show_profile(chat_container, name, friend) {
             const message_div = document.createElement('div')
             message_div.className = 'message_div'
             message_div.id = 'message_div'
-            const message_label = document.createElement('label')
-            message_label.htmlFor = 'message_div'
-            message_label.className = 'label'
-            message_label.innerHTML = `Message ${name}`
-            message_div.appendChild(message_label)
+            message_div.innerHTML = `Message ${name}`
             message_div.addEventListener('click', () => {
                 socket.emit("message_request", name)
                 body.removeChild(profile_container)

@@ -5,7 +5,7 @@
    ========================================================================== */
 @import url('https://fonts.googleapis.com/css2?family=Sora:wght@500;600;700&family=Inter:wght@400;500;600&display=swap');
 
-:root{
+:root {
   /* surfaces */
   --bg: #F6F7FB;
   --surface: #FFFFFF;
@@ -37,17 +37,20 @@
   --r-pill: 999px;
 
   /* shadow */
-  --shadow-sm: 0 1px 2px rgba(20,22,40,0.05);
-  --shadow-md: 0 10px 30px -12px rgba(20,22,43,0.18);
-  --shadow-lg: 0 20px 50px -20px rgba(20,22,43,0.28);
+  --shadow-sm: 0 1px 2px rgba(20, 22, 40, 0.05);
+  --shadow-md: 0 10px 30px -12px rgba(20, 22, 43, 0.18);
+  --shadow-lg: 0 20px 50px -20px rgba(20, 22, 43, 0.28);
 
   --font-display: 'Sora', 'Inter', system-ui, sans-serif;
   --font-body: 'Inter', system-ui, sans-serif;
 }
 
-*{ box-sizing: border-box; }
+* {
+  box-sizing: border-box;
+}
 
-html, body{
+html,
+body {
   margin: 0;
   padding: 0;
   background: var(--bg);
@@ -56,10 +59,16 @@ html, body{
   -webkit-font-smoothing: antialiased;
 }
 
-a{ color: var(--accent); text-decoration: none; }
-a:hover{ text-decoration: underline; }
+a {
+  color: var(--accent);
+  text-decoration: none;
+}
 
-.body{
+a:hover {
+  text-decoration: underline;
+}
+
+.body {
   overflow: hidden;
   height: 100vh;
   width: 100%;
@@ -71,10 +80,10 @@ a:hover{ text-decoration: underline; }
 /* ==========================================================================
    Auth — login & register
    ========================================================================== */
-.section{
+.section {
   background:
-    radial-gradient(560px 320px at 15% 12%, var(--accent-tint) 0%, rgba(234,237,254,0) 70%),
-    radial-gradient(480px 300px at 90% 85%, var(--accent-tint) 0%, rgba(234,237,254,0) 70%),
+    radial-gradient(560px 320px at 15% 12%, var(--accent-tint) 0%, rgba(234, 237, 254, 0) 70%),
+    radial-gradient(480px 300px at 90% 85%, var(--accent-tint) 0%, rgba(234, 237, 254, 0) 70%),
     var(--bg);
   height: 100vh;
   display: flex;
@@ -83,21 +92,22 @@ a:hover{ text-decoration: underline; }
   padding: 24px;
 }
 
-.section .card{
+.section .card {
   background: var(--surface);
   border: 1px solid var(--border);
   border-radius: var(--r-lg);
   box-shadow: var(--shadow-md);
 }
 
-#card2, #card2_login{
+#card2,
+#card2_login {
   width: 380px;
   height: auto;
   min-height: unset;
   padding: 8px;
 }
 
-.card-title{
+.card-title {
   font-family: var(--font-display);
   font-weight: 700;
   font-size: 1.5rem;
@@ -105,7 +115,7 @@ a:hover{ text-decoration: underline; }
   margin-bottom: 0;
 }
 
-.card-body form{
+.card-body form {
   color: var(--text-muted);
   font-family: var(--font-display);
   font-weight: 600;
@@ -114,28 +124,28 @@ a:hover{ text-decoration: underline; }
   text-transform: uppercase;
 }
 
-.form_info_div{
+.form_info_div {
   padding-top: 20px;
   display: flex;
   flex-direction: column;
   gap: 14px;
 }
 
-#login_div{
+#login_div {
   padding-top: 20px;
 }
 
-.form_info_div2{
+.form_info_div2 {
   display: flex;
   gap: 12px;
 }
 
-.form_info{
+.form_info {
   width: 100%;
 }
 
 .form_info .form-control,
-.form_info_div2 .form_info .form-control{
+.form_info_div2 .form_info .form-control {
   background: var(--surface-2);
   border: 1px solid var(--border);
   border-radius: var(--r-sm);
@@ -147,24 +157,24 @@ a:hover{ text-decoration: underline; }
   transition: border-color 0.15s ease, background 0.15s ease, box-shadow 0.15s ease;
 }
 
-.form_info .form-control:focus{
+.form_info .form-control:focus {
   outline: none;
   background: var(--surface);
   border-color: var(--accent);
   box-shadow: 0 0 0 3px var(--accent-tint);
 }
 
-input::placeholder{
+input::placeholder {
   font-size: 0.9rem;
   color: var(--text-faint);
 }
 
-#password{
+#password {
   margin-bottom: 4px;
 }
 
 .card-body .btn,
-.card-body button[type="submit"]{
+.card-body button[type="submit"] {
   width: 100%;
   margin-top: 22px;
   background: var(--accent);
@@ -178,21 +188,30 @@ input::placeholder{
   letter-spacing: normal;
   transition: background 0.15s ease, transform 0.1s ease;
 }
-.card-body .btn:hover{ background: var(--accent-hover); }
-.card-body .btn:active{ transform: scale(0.99); }
 
-.reg_link{
+.card-body .btn:hover {
+  background: var(--accent-hover);
+}
+
+.card-body .btn:active {
+  transform: scale(0.99);
+}
+
+.reg_link {
   font-size: 0.85rem;
   color: var(--text-muted);
   margin-top: 18px;
   text-align: center;
 }
-.reg_link a{ font-weight: 600; }
+
+.reg_link a {
+  font-weight: 600;
+}
 
 /* ==========================================================================
    Header / top nav
    ========================================================================== */
-.header_div{
+.header_div {
   display: flex;
   align-items: center;
   width: 100%;
@@ -203,7 +222,7 @@ input::placeholder{
   flex-shrink: 0;
 }
 
-.logo{
+.logo {
   margin: 0 auto 0 0;
   font-family: var(--font-display);
   font-size: 1.35rem;
@@ -212,7 +231,8 @@ input::placeholder{
   text-align: left;
   line-height: 1.1;
 }
-.logo::before{
+
+.logo::before {
   content: "";
   display: inline-block;
   width: 10px;
@@ -223,7 +243,7 @@ input::placeholder{
   vertical-align: middle;
 }
 
-.sub_heading{
+.sub_heading {
   font-family: var(--font-body);
   font-size: 0.7rem;
   font-weight: 500;
@@ -233,13 +253,13 @@ input::placeholder{
   margin-top: 2px;
 }
 
-.search{
+.search {
   width: 320px;
   max-width: 40vw;
   order: -1;
 }
 
-#search{
+#searchInput {
   background: var(--surface-2);
   width: 100%;
   padding: 10px 16px;
@@ -251,7 +271,8 @@ input::placeholder{
   color: var(--text);
   transition: border-color 0.15s ease, background 0.15s ease, box-shadow 0.15s ease;
 }
-#search:focus{
+
+#searchInput:focus {
   background: var(--surface);
   border-color: var(--accent);
   box-shadow: 0 0 0 3px var(--accent-tint);
@@ -260,19 +281,19 @@ input::placeholder{
 /* ==========================================================================
    Home layout — sidebar + main
    ========================================================================== */
-.home_section{
+.home_section {
   position: relative;
   height: 100%;
   overflow: hidden;
 }
 
-.home{
+.home {
   background: var(--bg);
   display: flex;
   height: 100%;
 }
 
-.blur{
+.blur {
   position: absolute;
   left: 0;
   z-index: 5;
@@ -282,7 +303,7 @@ input::placeholder{
   backdrop-filter: blur(24px);
 }
 
-.menu{
+.menu {
   width: 360px;
   flex-shrink: 0;
   background: var(--surface);
@@ -293,10 +314,11 @@ input::placeholder{
   flex-direction: column;
 }
 
-.vertical-menu{
+.vertical-menu {
   padding: 8px 0 24px;
 }
-.initmessage{
+
+.initmessage {
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -305,7 +327,7 @@ input::placeholder{
 }
 
 .vertical-menu h3,
-.chatSign{
+.chatSign {
   font-family: var(--font-display);
   font-weight: 600;
   font-size: 0.72rem;
@@ -316,7 +338,7 @@ input::placeholder{
   margin: 0;
 }
 
-.name_div{
+.name_div {
   padding: 12px 16px;
   margin: 2px 12px;
   text-decoration: none;
@@ -328,15 +350,15 @@ input::placeholder{
   transition: background 0.12s ease;
 }
 
-.name_div:hover{
+.name_div:hover {
   background-color: var(--surface-2);
 }
 
-.name_div.active{
+.name_div.active {
   background-color: var(--accent-tint);
 }
 
-.vertical-menu p{
+.vertical-menu p {
   color: var(--text);
   display: block;
   font-weight: 600;
@@ -347,7 +369,7 @@ input::placeholder{
   text-overflow: ellipsis;
 }
 
-.name_div .fa-user{
+.name_div .fa-user {
   flex-shrink: 0;
   width: 44px;
   height: 44px;
@@ -363,7 +385,7 @@ input::placeholder{
   padding: 0 !important;
 }
 
-.name_div > div{
+.name_div>div {
   min-width: 0;
   flex: 1;
   display: flex;
@@ -371,7 +393,7 @@ input::placeholder{
   gap: 2px;
 }
 
-.smallParagraph{
+.smallParagraph {
   font-size: 0.82rem;
   color: var(--text-muted);
   white-space: nowrap;
@@ -379,7 +401,7 @@ input::placeholder{
   text-overflow: ellipsis;
 }
 
-li{
+li {
   list-style: none;
   padding: 40px 24px;
   color: var(--text-faint);
@@ -388,7 +410,7 @@ li{
 }
 
 /* empty state (shown before a conversation is selected) */
-.empty_state{
+.empty_state {
   flex: 1;
   height: 100%;
   display: flex;
@@ -400,25 +422,28 @@ li{
   text-align: center;
   padding: 24px;
 }
-.empty_state .fa{
+
+.empty_state .fa {
   font-size: 2.4rem !important;
   color: var(--accent-tint-2);
   margin-bottom: 12px !important;
 }
-.empty_state h4{
+
+.empty_state h4 {
   font-family: var(--font-display);
   font-weight: 600;
   color: var(--text-muted);
   margin: 0;
   font-size: 1.05rem;
 }
-.empty_state p{
+
+.empty_state p {
   font-size: 0.88rem;
   color: var(--text-faint);
   margin: 0;
 }
 
-.empty_chat_state{
+.empty_chat_state {
   margin: auto;
   color: var(--text-faint);
   font-size: 0.9rem;
@@ -428,7 +453,7 @@ li{
 /* ==========================================================================
    Chat window
    ========================================================================== */
-.chat_container{
+.chat_container {
   width: 100%;
   height: 100%;
   position: relative;
@@ -437,7 +462,7 @@ li{
   background: var(--bg);
 }
 
-.reciever_title{
+.reciever_title {
   height: 60px;
   padding: 0 28px;
   margin: 0;
@@ -453,7 +478,7 @@ li{
   cursor: pointer;
 }
 
-.chat_area{
+.chat_area {
   flex: 1;
   width: 100%;
   overflow: hidden;
@@ -463,7 +488,7 @@ li{
   flex-direction: column;
 }
 
-.sender_chats{
+.sender_chats {
   background-color: var(--accent);
   width: fit-content;
   color: var(--text-on-accent);
@@ -479,7 +504,7 @@ li{
   box-shadow: var(--shadow-sm);
 }
 
-.reciever_chats{
+.reciever_chats {
   background-color: var(--surface-2);
   width: fit-content;
   color: var(--text);
@@ -493,14 +518,14 @@ li{
   line-height: 1.4;
 }
 
-.chat_sender{
+.chat_sender {
   width: 100%;
   padding-left: 40px;
   padding-top: 10px;
   padding-bottom: 20px;
 }
 
-.send_message{
+.send_message {
   width: 100%;
   padding: 16px 24px 20px;
   display: none;
@@ -508,15 +533,18 @@ li{
   background: var(--surface);
   border-top: 1px solid var(--border);
 }
-.send_message.show{ display: block; }
 
-.message_form{
+.send_message.show {
+  display: block;
+}
+
+.message_form {
   position: relative;
   width: 100%;
   margin: 0 auto;
 }
 
-.chatInput{
+.chatInput {
   height: 22px;
   border: none;
   border-bottom: 1px solid var(--border);
@@ -528,12 +556,13 @@ li{
   color: var(--text);
   transition: border-color 0.15s ease, background 0.15s ease;
 }
-.chatInput:focus{
+
+.chatInput:focus {
   outline: none;
   border-color: var(--accent);
 }
 
-.message_button{
+.message_button {
   position: absolute;
   color: var(--accent);
   background-color: transparent;
@@ -549,12 +578,15 @@ li{
   cursor: pointer;
   transition: background 0.15s ease;
 }
-.message_button:hover{ color: var(--accent-hover); }
+
+.message_button:hover {
+  color: var(--accent-hover);
+}
 
 /* ==========================================================================
    Profile drawer (slide-in panel, replaces the old solid-black block)
    ========================================================================== */
-.profile_container{
+.profile_container {
   position: absolute;
   width: 380px;
   max-width: 100%;
@@ -568,7 +600,7 @@ li{
   overflow-y: auto;
 }
 
-.profile_header{
+.profile_header {
   display: flex;
   align-items: center;
   padding: 18px 20px;
@@ -578,7 +610,7 @@ li{
   top: 0;
 }
 
-.close_button{
+.close_button {
   background: var(--surface-2);
   color: var(--text-muted);
   border: none;
@@ -592,9 +624,13 @@ li{
   justify-content: center;
   transition: background 0.15s ease, color 0.15s ease;
 }
-.close_button:hover{ background: var(--danger-tint); color: var(--danger); }
 
-.contact_info{
+.close_button:hover {
+  background: var(--danger-tint);
+  color: var(--danger);
+}
+
+.contact_info {
   color: var(--text);
   font-family: var(--font-display);
   font-weight: 600;
@@ -603,14 +639,14 @@ li{
   padding-top: 0;
 }
 
-.profile{
+.profile {
   display: flex;
   flex-direction: column;
   align-items: center;
   padding: 32px 24px 24px;
 }
 
-.profile > .fa{
+.profile>.fa {
   width: 120px;
   height: 120px;
   border-radius: 50%;
@@ -624,14 +660,14 @@ li{
   padding: 0 !important;
 }
 
-.profile_name{
+.profile_name {
   color: var(--text);
   font-family: var(--font-display);
   font-size: 1.2rem;
   font-weight: 700;
 }
 
-.line_break{
+.line_break {
   width: 100%;
   height: 1px;
   background-color: var(--border);
@@ -639,12 +675,12 @@ li{
   margin-bottom: 24px;
 }
 
-.profile_about{
+.profile_about {
   color: var(--text);
   width: 100%;
 }
 
-.about_header{
+.about_header {
   font-family: var(--font-display);
   font-weight: 600;
   font-size: 0.8rem;
@@ -654,13 +690,13 @@ li{
   margin: 0 0 6px;
 }
 
-.about_info{
+.about_info {
   color: var(--text-muted);
   font-size: 0.92rem;
   line-height: 1.5;
 }
 
-.profile_social{
+.profile_social {
   display: flex;
   color: var(--text-muted);
   width: 100%;
@@ -672,7 +708,7 @@ li{
 .message_div,
 #message_div,
 .delete_div,
-#delete_div{
+#delete_div {
   color: var(--text-on-accent);
   width: 100%;
   padding: 13px 0;
@@ -687,41 +723,60 @@ li{
   cursor: pointer;
   transition: background 0.15s ease, transform 0.1s ease;
 }
-.follow_div:hover, #follow_div:hover{ background: var(--accent-hover); }
-.follow_div:disabled{ background: var(--surface-3); color: var(--text-faint); cursor: default; }
 
-.message_div, #message_div{
+.follow_div:hover,
+#follow_div:hover {
+  background: var(--accent-hover);
+}
+
+.follow_div:disabled {
+  background: var(--surface-3);
+  color: var(--text-faint);
+  cursor: default;
+}
+
+.message_div,
+#message_div {
   background: var(--surface-2);
   color: var(--text);
   border: 1px solid var(--border);
 }
-.message_div:hover, #message_div:hover{ background: var(--surface-3); }
 
-.delete_div, #delete_div{
+.message_div:hover,
+#message_div:hover {
+  background: var(--surface-3);
+}
+
+.delete_div,
+#delete_div {
   background: var(--surface);
   color: var(--danger);
   border: 1px solid var(--danger-tint);
 }
-.delete_div:hover, #delete_div:hover{ background: var(--danger-tint); }
+
+.delete_div:hover,
+#delete_div:hover {
+  background: var(--danger-tint);
+}
 
 /* the JS duplicates the button text inside a nested <label> — hide it to avoid double text */
 .follow_div .label,
 .message_div .label,
-.delete_div .label{
+.delete_div .label {
   display: none;
 }
 
 /* ==========================================================================
    Feed / posts
    ========================================================================== */
-.chat_container:has(.post_container){
+.chat_container:has(.post_container) {
   overflow-y: auto;
   align-items: center;
   padding: 32px 0;
   gap: 24px;
 }
 
-.post_container{
+.post_container {
   width: 100%;
   display: flex;
   flex-direction: column;
@@ -729,7 +784,7 @@ li{
   margin-bottom: 24px;
 }
 
-.posted{
+.posted {
   background-color: var(--surface);
   border: 1px solid var(--border);
   min-width: 420px;
@@ -742,7 +797,7 @@ li{
   box-shadow: var(--shadow-sm);
 }
 
-.poster{
+.poster {
   font-family: var(--font-display);
   font-size: 1.05rem;
   font-weight: 600;
@@ -751,14 +806,14 @@ li{
   border-bottom: 1px solid var(--border);
 }
 
-.post_header{
+.post_header {
   font-family: var(--font-display);
   font-size: 1.3rem;
   font-weight: 700;
   margin: 18px 24px 0;
 }
 
-.post_body{
+.post_body {
   margin: 8px 24px 0;
   font-size: 0.95rem;
   font-weight: 400;
@@ -766,14 +821,15 @@ li{
   line-height: 1.55;
 }
 
-.likes_and_comments{
+.likes_and_comments {
   display: flex;
   padding: 16px 20px 8px;
   height: fit-content;
   gap: 8px;
 }
 
-.likes, .comments{
+.likes,
+.comments {
   margin: 0;
   display: flex;
   align-items: center;
@@ -783,20 +839,25 @@ li{
   font-size: 0.88rem;
 }
 
-.likes .fa, .comments .fa{
+.likes .fa,
+.comments .fa {
   cursor: pointer;
   margin: 0 !important;
   padding: 0 !important;
   color: var(--text-faint);
 }
-.likes .fa-heart.fas{ color: var(--like) !important; }
 
-.like_count, .comment_count{
+.likes .fa-heart.fas {
+  color: var(--like) !important;
+}
+
+.like_count,
+.comment_count {
   padding-left: 2px;
 }
 
 /* comment modal */
-.comment_div{
+.comment_div {
   background-color: var(--surface);
   border: 1px solid var(--border);
   width: 480px;
@@ -814,7 +875,7 @@ li{
   box-shadow: var(--shadow-lg);
 }
 
-.comment_close_button{
+.comment_close_button {
   background: var(--surface-2);
   top: 14px;
   left: 14px;
@@ -827,22 +888,26 @@ li{
   position: absolute;
   cursor: pointer;
 }
-.comment_close_button:hover{ background: var(--danger-tint); color: var(--danger); }
 
-.comment_div_comment{
+.comment_close_button:hover {
+  background: var(--danger-tint);
+  color: var(--danger);
+}
+
+.comment_div_comment {
   height: 100%;
   width: 88%;
   overflow-y: auto;
   padding-top: 12px;
 }
 
-.comment_div_comment div{
+.comment_div_comment div {
   display: flex;
   margin-bottom: 12px;
   font-size: 0.9rem;
 }
 
-.comment_form{
+.comment_form {
   width: 88%;
   display: flex;
   justify-content: center;
@@ -850,7 +915,7 @@ li{
   padding: 14px 0 20px;
 }
 
-.comment_input{
+.comment_input {
   width: 100%;
   margin: auto;
   border-radius: var(--r-pill);
@@ -863,12 +928,13 @@ li{
   font-size: 0.9rem;
   color: var(--text);
 }
-.comment_input:focus{
+
+.comment_input:focus {
   background: var(--surface);
   border-color: var(--accent);
 }
 
-.fa-paper-plane{
+.fa-paper-plane {
   position: absolute;
   color: var(--accent);
   right: 6%;
@@ -878,14 +944,14 @@ li{
   cursor: pointer;
 }
 
-.comment_header{
+.comment_header {
   font-family: var(--font-display);
   font-weight: 600;
   padding-right: 10px;
   color: var(--text);
 }
 
-.comment_body{
+.comment_body {
   font-weight: 400;
   color: var(--text-muted);
 }
@@ -893,7 +959,7 @@ li{
 /* ==========================================================================
    Profile page (profile.ejs)
    ========================================================================== */
-.profile_section{
+.profile_section {
   max-width: 720px;
   margin: 48px auto 0;
   display: flex;
@@ -903,7 +969,7 @@ li{
   border-bottom: 1px solid var(--border);
 }
 
-.profile_picture{
+.profile_picture {
   flex-shrink: 0;
   width: 140px;
   height: 140px;
@@ -912,18 +978,18 @@ li{
   border: 1px solid var(--accent-tint-2);
 }
 
-.profile_info{
+.profile_info {
   flex: 1;
 }
 
-.profile_name_info{
+.profile_name_info {
   display: flex;
   align-items: center;
   gap: 16px;
   flex-wrap: wrap;
 }
 
-.profile_name_info h4{
+.profile_name_info h4 {
   font-family: var(--font-display);
   font-weight: 700;
   font-size: 1.4rem;
@@ -931,12 +997,12 @@ li{
   color: var(--text);
 }
 
-.profile_buttons{
+.profile_buttons {
   display: flex;
   gap: 10px;
 }
 
-.profile_buttons .btn{
+.profile_buttons .btn {
   border-radius: var(--r-pill);
   padding: 8px 20px;
   font-family: var(--font-body);
@@ -944,13 +1010,30 @@ li{
   font-size: 0.85rem;
   border: none;
 }
-.profile_buttons .btn-primary{ background: var(--accent); }
-.profile_buttons .btn-primary:hover{ background: var(--accent-hover); }
-.profile_buttons .btn-dark{ background: var(--surface-2); color: var(--text); border: 1px solid var(--border); }
-.profile_buttons .btn-dark:hover{ background: var(--surface-3); }
-.profile_buttons .btn:disabled{ opacity: 0.6; }
 
-.profile_social{
+.profile_buttons .btn-primary {
+  background: var(--accent);
+}
+
+.profile_buttons .btn-primary:hover {
+  background: var(--accent-hover);
+}
+
+.profile_buttons .btn-dark {
+  background: var(--surface-2);
+  color: var(--text);
+  border: 1px solid var(--border);
+}
+
+.profile_buttons .btn-dark:hover {
+  background: var(--surface-3);
+}
+
+.profile_buttons .btn:disabled {
+  opacity: 0.6;
+}
+
+.profile_social {
   padding-top: 16px;
   display: flex;
   gap: 28px;
@@ -958,21 +1041,23 @@ li{
   width: auto;
   justify-content: flex-start;
 }
-.profile_social h6{
+
+.profile_social h6 {
   margin: 0;
   font-size: 0.9rem;
   color: var(--text-muted);
   font-weight: 500;
 }
 
-.posts{
+.posts {
   max-width: 720px;
   margin: 32px auto;
   padding: 0 24px;
   text-align: center;
   color: var(--text-faint);
 }
-.posts h3{
+
+.posts h3 {
   font-family: var(--font-display);
   font-weight: 600;
   font-size: 1rem;
@@ -982,10 +1067,111 @@ li{
 /* ==========================================================================
    Utility
    ========================================================================== */
-.hidden{ display: none; }
-.show{ display: block; }
+.hidden {
+  display: none;
+}
 
-.fa{
+.show {
+  display: block;
+}
+
+.fa {
   margin-top: 10px;
   padding-right: 10px;
+}
+
+
+.burger {
+  display: none;
+}
+
+#mobile_searchInput {
+  display: none;
+}
+.mobile_search{
+  display: flex;
+  width: 100%;
+  justify-content: center;
+  margin: 10px;
+}
+
+/* Mobile */
+@media screen and (max-width: 768px) {
+
+  .header_div {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    padding: 15px;
+  }
+
+  /* Chatbox */
+  .logo {
+    order: 1;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+  }
+
+  /* By Eloka */
+  .sub_heading {
+    text-align: center;
+    font-size: 12px;
+  }
+
+  /* Search Container */
+
+  #searchInput {
+    display: none;
+  }
+
+  #mobile_searchInput {
+    display: flex;
+    background: var(--surface-2);
+    width: 100%;
+    padding: 10px 16px;
+    border: 1px solid var(--border);
+    border-radius: var(--r-pill);
+    outline: none;
+    font-family: var(--font-body);
+    font-size: 0.9rem;
+    color: var(--text);
+    transition: border-color 0.15s ease, background 0.15s ease, box-shadow 0.15s ease;
+  }
+
+  /* Search Input */
+  .burger {
+    display: block;
+    position: absolute;
+    top: 15px;
+    left: 15px;
+    font-size: 28px;
+    border: none;
+    background: transparent;
+    cursor: pointer;
+    z-index: 10001;
+    padding: 6px 10px;
+    border-radius: 6px;
+  }
+
+  .menu {
+    position: fixed;
+    top: 0;
+    left: -100%;
+    width: 300px;
+    height: 100vh;
+    background: white;
+    transition: left .3s ease;
+    z-index: 5;
+    overflow-y: auto;
+  }
+
+  .menu.open {
+    left: 0;
+  }
 }
